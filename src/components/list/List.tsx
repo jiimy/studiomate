@@ -73,7 +73,7 @@ const List = () => {
               </div>
             )}
             {pokemonListAllStatus === "success" && (
-              <div className="grid w-full grid-cols-1 gap-6 mt-4 justify-items-center sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+              <div className="">
                 {pokemonListAll.pages.map((group, index) => (
                   <Item key={index} pokemons={group.species} />
                 ))}
