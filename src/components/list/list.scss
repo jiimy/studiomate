@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.list-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 20px;
+}

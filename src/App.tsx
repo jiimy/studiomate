@@ -1,9 +1,13 @@
-import React from 'react';
-import Hire from './page/hire/Hire';
+import Detail from 'page/detail/Detail';
+import Main from 'page/main/Main';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <Hire />
+    <Routes>
+      <Route path='/' element={<Main />} />
+      <Route path="/pokemon/:id" element={<Detail />} />
+    </Routes>
   );
 }
 
