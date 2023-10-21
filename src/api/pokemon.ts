@@ -7,7 +7,6 @@ export async function getPoketmonListAll({
   pageParam = 0,
   offset = 21,
 }: any) {
-  console.log("서치", searchInputValue);
   if (searchInputValue) {
     const res = await apiInstance
       .get(`/pokemon/${searchInputValue}`, {})
@@ -41,7 +40,7 @@ export async function getPokemonInfoUrlApi(url: string) {
 }
 
 
-// 
+// 번역
 export async function getPokemonSpeciesApi(name: string | undefined) {
   const res = await apiInstance
     .get(`/pokemon-species/${name}`, {})

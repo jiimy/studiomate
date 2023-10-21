@@ -9,7 +9,7 @@ const Detail = () => {
 
   // 기본 정보
   const { data: pokemonInfo } = useQuery(
-    ["pokemon", id],
+    ["pokemonId", id],
     () => getPokemonInfoKeyApi(id),
     { enabled: !!id }
   );
@@ -34,9 +34,8 @@ const Detail = () => {
 
   return (
     <div>
-      디테일페이지
-      {pokemonInfo && pokemonSpeciesInfo && pokemonevolutionInfo &&
-        <DetailCard pokemonevolutionInfo={pokemonevolutionInfo} pokemonSpeciesInfo={pokemonSpeciesInfo} pokemonInfo={pokemonInfo} />
+      {pokemonInfo && pokemonSpeciesInfo && pokemonevolutionInfo ?
+        <DetailCard pokemonevolutionInfo={pokemonevolutionInfo} pokemonSpeciesInfo={pokemonSpeciesInfo} pokemonInfo={pokemonInfo} /> : '로딩중..'
       }
     </div>
   )

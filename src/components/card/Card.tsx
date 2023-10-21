@@ -10,7 +10,7 @@ type pokemonNameType = {
 
 const Card = ({ pokemonName }: pokemonNameType) => {
   const { data: pokemonInfo } = useQuery(
-    ["pokemons", pokemonName],
+    ["pokemonName", pokemonName],
     () => getPokemonInfoKeyApi(pokemonName),
     { enabled: !!pokemonName }
   );

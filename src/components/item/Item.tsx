@@ -13,7 +13,7 @@ type PokemonLink = {
 }
 
 const Item = ({ pokemons }: pockemonIndexType) => {
-  console.log('데이터 : ', pokemons, pokemons?.length);
+  // console.log('데이터 : ', pokemons, pokemons?.length);
 
   return (
     <>

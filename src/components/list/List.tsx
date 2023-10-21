@@ -38,7 +38,7 @@ const List = () => {
     if (isView && pokemonListAllHasNextPage) pokemonListAllFetchNextPage();
   }, [isView]);
 
-  console.log('리스트', pokemonListAll);
+  // console.log('리스트', pokemonListAll);
 
 
   return (
