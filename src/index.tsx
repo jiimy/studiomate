@@ -5,6 +5,7 @@ import './assets/style/index.scss';
 import { QueryClient, QueryClientProvider } from "react-query";
 import App from './App';
 import { Provider } from "react-redux";
+import { HelmetProvider } from 'react-helmet-async';
 import reportWebVitals from './reportWebVitals';
 import store from 'store';
 
@@ -28,9 +29,11 @@ root.render(
   // <React.StrictMode>
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
     </Provider>
   </QueryClientProvider>
   // </React.StrictMode>

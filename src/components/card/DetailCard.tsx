@@ -1,5 +1,6 @@
 import { getPokemonSpeciesApi } from 'api/pokemon';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { convertLanguage } from 'util/convertLanguage';
 
@@ -74,29 +75,34 @@ const DetailCard = ({ pokemonevolutionInfo, pokemonSpeciesInfo, pokemonInfo }: a
 
 
   return (
-    <div>
-      <LazyLoadImage
-        key={pokemonInfo?.id}
-        src={pokemonInfo?.sprites?.["front_default"]}
-        alt={pokemonInfo?.name}
-        className="img-lazy"
-        loading="lazy"
-        width={120}
-        height={120}
-      />
-      이름: {getname && getname?.['name']}
-      <br />
-      설명: {getdesc && getdesc?.['flavor_text']}
-      <br />
-      <br />
-      {prevEvo && nextEvo ?
-        <>
-          <div>이전진화: {prevEvo}</div>
-          <div>다음진화: {nextEvo}</div>
-        </> :
-        <>로딩중..</>
-      }
-    </div>
+    <>
+      <Helmet>
+        <title>포켓몬 정보 - {getname && getname?.['name']}</title>
+      </Helmet>
+      <div>
+        <LazyLoadImage
+          key={pokemonInfo?.id}
+          src={pokemonInfo?.sprites?.["front_default"]}
+          alt={pokemonInfo?.name}
+          className="img-lazy"
+          loading="lazy"
+          width={120}
+          height={120}
+        />
+        이름: {getname && getname?.['name']}
+        <br />
+        설명: {getdesc && getdesc?.['flavor_text']}
+        <br />
+        <br />
+        {prevEvo && nextEvo ?
+          <>
+            <div>이전진화: {prevEvo}</div>
+            <div>다음진화: {nextEvo}</div>
+          </> :
+          <>로딩중..</>
+        }
+      </div>
+    </>
   )
 }
 

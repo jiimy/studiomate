@@ -9,8 +9,6 @@ const SearchBar = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log('클릭');
-    console.log('text', text);
     dispatch(input(text))
     setText('');
   };

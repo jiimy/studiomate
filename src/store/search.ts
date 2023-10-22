@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type Search = {
   keyword: string;
+  error: string;
 };
 
 const initialState: Search = {
   keyword: '',
+  error: '',
 };
 
 export const searchSlice = createSlice({
@@ -13,15 +15,16 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     input: (state: Search, action) => {
-      // state.number += action.payload;
-      state.keyword = action.payload
-        // state.number += 1; // counter type의 number 키값
+      state.keyword = action.payload;
     },
     reset: (state, action) => {
-      state.keyword = '';
+      state.keyword = initialState.keyword;
+    },
+    ERROR: (state, action) => {
+      state.error = action.payload;
     },
   },
 });
 
-export const { input, reset } = searchSlice.actions;
+export const { input, reset, ERROR } = searchSlice.actions;
 export default searchSlice.reducer;

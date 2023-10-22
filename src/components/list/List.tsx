@@ -3,14 +3,17 @@ import Item from 'components/item/Item';
 import { useEffect, useState, memo } from 'react';
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from 'react-query';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import './list.scss';
+import { reset } from 'store/search';
 
 const List = () => {
   const [ref, isView] = useInView();
+  const dispatch = useDispatch();
 
   const searchInputValue = useSelector((state: RootState) => state.search.keyword);
+  const searchNoResult = useSelector((state: RootState) => state.search.error);
 
   // console.log('스토어', searchInputValue)
 
@@ -18,8 +21,6 @@ const List = () => {
     data: pokemonListAll,
     fetchNextPage: pokemonListAllFetchNextPage,
     hasNextPage: pokemonListAllHasNextPage,
-    isFetching, // 첫 페이지 fetching 여부, Boolean
-    isFetchingNextPage, // 추가 페이지 fetching 여부, Boolean
     status: pokemonListAllStatus,
   } = useInfiniteQuery(
     ["pokemonList", searchInputValue],
@@ -40,9 +41,13 @@ const List = () => {
 
   // console.log('리스트', pokemonListAll);
 
-
   return (
     <div>
+      {!!searchInputValue &&
+        <button onClick={() => {
+          dispatch(reset(''))
+        }}>전체 목록 보기</button>
+      }
       <div className="list">
         {/* 기본 홈 진입시 pokemonListAll*/}
         {!searchInputValue && (
@@ -52,7 +57,6 @@ const List = () => {
                 불러오는 중 ...
               </div>
             )}
-            {/* {status === "error" && <p>{error?.message}</p>} */}
             {pokemonListAllStatus === "success" && (
               <div className="list-container">
                 {pokemonListAll.pages.map((group, index) => (
@@ -67,9 +71,11 @@ const List = () => {
         {/* 검색 결과 */}
         {!!searchInputValue && (
           <>
-            {pokemonListAllStatus === "loading" && (
+            {pokemonListAll === undefined && searchNoResult && <div>{searchNoResult}</div>
+            }
+            {searchNoResult === '' && pokemonListAllStatus === "loading" && (
               <div>
-                검색 중 ...
+                불러오는 중 ...
               </div>
             )}
             {pokemonListAllStatus === "success" && (

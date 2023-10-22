@@ -2,7 +2,6 @@ import { getPokemonInfoKeyApi, getPokemonInfoUrlApi, getPokemonSpeciesApi } from
 import DetailCard from 'components/card/DetailCard';
 import { useQuery } from "react-query";
 import { useParams } from 'react-router';
-import { convertLanguage } from 'util/convertLanguage';
 
 const Detail = () => {
   const { id } = useParams();
@@ -33,11 +32,13 @@ const Detail = () => {
   // console.log('포켓몬 진화 : ', pokemonevolutionInfo);
 
   return (
-    <div>
-      {pokemonInfo && pokemonSpeciesInfo && pokemonevolutionInfo ?
-        <DetailCard pokemonevolutionInfo={pokemonevolutionInfo} pokemonSpeciesInfo={pokemonSpeciesInfo} pokemonInfo={pokemonInfo} /> : '로딩중..'
-      }
-    </div>
+    <>
+      <div>
+        {pokemonInfo && pokemonSpeciesInfo && pokemonevolutionInfo ?
+          <DetailCard pokemonevolutionInfo={pokemonevolutionInfo} pokemonSpeciesInfo={pokemonSpeciesInfo} pokemonInfo={pokemonInfo} /> : '로딩중..'
+        }
+      </div>
+    </>
   )
 }
 
