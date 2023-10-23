@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiInstance = axios.create({
-  baseURL: process.env.REACT_APP_PUBLIC_URL,
+  baseURL: "https://pokeapi.co/api/v2",
   timeout: 5000,
 });
 
